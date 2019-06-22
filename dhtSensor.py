@@ -22,6 +22,7 @@ sensor = Adafruit_DHT.DHT22
 
 pin = 17
 led = 22
+delay = 10
 
 print("Init: dhtSensor.py")
 
@@ -32,12 +33,12 @@ GPIO.setup(led, GPIO.OUT)
 while True:
     GPIO.output(led, False)
 
-    time.sleep(5)
-    GPIO.output(led, True)
+    time.sleep(delay - 1)
     humidity, temperature = ReadSensor(sensor, pin)
     client.publish("/dht/temperature", temperature) #publish
     client.publish("/dht/humidity", humidity) #publish
+    GPIO.output(led, True)
 
     print(humidity, temperature)
 
-    time.sleep(5)
+    time.sleep(1)
