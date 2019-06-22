@@ -20,7 +20,7 @@ def on_message(client, userdata, message):
 	GPIO.output(led, True)
 	humidity, temperature = ReadSensor(sensor, pin)
 	print(date, ctime, humidity, temperature,str(message.payload.decode("utf-8")))
-	with open('/home/openhabian/scripts/fan.csv', mode='a') as employee_file:
+	with open('/home/openhabian/fan.csv', mode='a') as employee_file:
 		csvWrite = csv.writer(employee_file, delimiter=',')
 		csvWrite.writerow([date,ctime, humidity, temperature, str(message.payload.decode("utf-8"))])
 
